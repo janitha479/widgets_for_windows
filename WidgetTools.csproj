@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- The windows10 TFM enables the WinRT projections we need for the
+         System Media Transport Controls (Windows.Media.Control). -->
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <!-- WinForms NotifyIcon for the tray-icon shell that hosts the widgets. -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>WidgetTools</AssemblyName>
+    <RootNamespace>WidgetTools</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WASAPI loopback capture + FFT -->
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <!-- root\wmi battery telemetry (voltage / power / current) -->
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

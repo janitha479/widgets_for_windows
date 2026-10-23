@@ -1,0 +1,65 @@
+<Window x:Class="WidgetTools.BatteryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Battery"
+        Width="220" Height="236"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize">
+
+    <Canvas x:Name="Root">
+
+        <!-- ============ Expanded card ============ -->
+        <Border x:Name="Card" Width="220" Height="236" CornerRadius="14"
+                Background="#E6121212" Opacity="0" IsHitTestVisible="False"
+                ClipToBounds="True" RenderTransformOrigin="1,0">
+            <Border.RenderTransform>
+                <ScaleTransform x:Name="CardScale" ScaleX="0.3" ScaleY="0.3" />
+            </Border.RenderTransform>
+            <Grid Margin="16,12,16,14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Battery" Foreground="#F2F3F5" FontFamily="Segoe UI"
+                           FontWeight="Bold" FontSize="12" HorizontalAlignment="Left" />
+                <TextBlock x:Name="CloseBtn" Grid.Row="0" Text="&#x2715;" Foreground="#8A8F9C"
+                           FontFamily="Segoe UI" FontSize="11" Cursor="Hand"
+                           HorizontalAlignment="Right" />
+
+                <!-- ring -->
+                <Grid Grid.Row="1" Width="104" Height="104" HorizontalAlignment="Center" Margin="0,6,0,4">
+                    <Ellipse Width="84" Height="84" Stroke="#2C2F3A" StrokeThickness="11" />
+                    <Path x:Name="BatArc" Stroke="#4CD4B0" StrokeThickness="11"
+                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock x:Name="PctText" Text="--%" Foreground="#F2F3F5" FontFamily="Segoe UI"
+                                   FontWeight="SemiBold" FontSize="24" HorizontalAlignment="Center" />
+                        <TextBlock x:Name="StateText" Text="..." Foreground="#8A8F9C" FontFamily="Segoe UI"
+                                   FontSize="9" HorizontalAlignment="Center" Margin="0,-2,0,0" />
+                    </StackPanel>
+                </Grid>
+
+                <!-- readouts -->
+                <StackPanel Grid.Row="2" VerticalAlignment="Top">
+                    <TextBlock x:Name="VoltText" Foreground="#F2F3F5" FontFamily="Consolas" FontSize="11" Margin="0,2" />
+                    <TextBlock x:Name="PowerText" Foreground="#F2F3F5" FontFamily="Consolas" FontSize="11" Margin="0,2" />
+                    <TextBlock x:Name="CurrentText" Foreground="#F2F3F5" FontFamily="Consolas" FontSize="11" Margin="0,2" />
+                    <TextBlock x:Name="EtaText" Foreground="#8A8F9C" FontFamily="Consolas" FontSize="11" Margin="0,2" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ============ Collapsed badge ============ -->
+        <Grid x:Name="Badge" Width="72" Height="72" Canvas.Left="148" Canvas.Top="0" Cursor="Hand">
+            <Ellipse Width="72" Height="72" Fill="#E6121212" />
+            <Ellipse Width="52" Height="52" Stroke="#2C2F3A" StrokeThickness="7" />
+            <Path x:Name="BadgeArc" Stroke="#4CD4B0" StrokeThickness="7"
+                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" IsHitTestVisible="False" />
+            <TextBlock x:Name="BadgeText" Text="--%" Foreground="#F2F3F5" FontFamily="Segoe UI"
+                       FontWeight="SemiBold" FontSize="14" IsHitTestVisible="False"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+    </Canvas>
+</Window>
